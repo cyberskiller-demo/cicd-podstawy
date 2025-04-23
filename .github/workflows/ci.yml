@@ -1,21 +1,26 @@
-name: CI/CD Pipeline
+name: Hello World Workflow
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build-and-deploy:
+  hello-job:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: List repository contents
-        run: ls -la
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: .
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Display system info
+        run: |
+          uname -a
+          pwd
+          ls -la
+          
+      - name: Hello GitHub Actions
+        run: echo "Hello GitHub Actions!"
+        
+      - name: Run bash script
+        run: |
+          chmod +x ./hello.sh
+          ./hello.sh
